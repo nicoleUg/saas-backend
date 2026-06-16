@@ -1,0 +1,6 @@
+extend type Product {
+  """
+  ✨ Implicit foreign key field based on `Product`.`category`. It must match the value of `Category`.`id`. See `@ref` for how to customize it.
+  """
+  categoryId: UUID! @fdc_generated(from: "Product.category", purpose: IMPLICIT_REF_FIELD)
+}

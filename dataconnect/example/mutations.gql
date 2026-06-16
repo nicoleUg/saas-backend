@@ -1,0 +1,9 @@
+# dataconnect/example/mutations.gql
+
+mutation CreateCategory($name: String!, $orderIndex: Int!, $imageUrl: String) @auth(level: NO_ACCESS) {
+  category_insert(data: { name: $name, orderIndex: $orderIndex, imageUrl: $imageUrl })
+}
+
+mutation CreateProduct($categoryId: UUID!, $name: String!, $description: String!, $price: Float!) @auth(level: NO_ACCESS) {
+  product_insert(data: { categoryId: $categoryId, name: $name, description: $description, price: $price })
+}
