@@ -9,6 +9,24 @@ extend type Mutation {
     data: Category_Data!
   ): Category_KeyOutput! @fdc_generated(from: "Category", purpose: INSERT_SINGLE)
   """
+  ✨ Insert a single `Order` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  order_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: Order_Data!
+  ): Order_KeyOutput! @fdc_generated(from: "Order", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `OrderItem` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  orderItem_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: OrderItem_Data!
+  ): OrderItem_KeyOutput! @fdc_generated(from: "OrderItem", purpose: INSERT_SINGLE)
+  """
   ✨ Insert a single `Product` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
   """
   product_insert(
@@ -26,6 +44,24 @@ extend type Mutation {
     """
     data: [Category_Data!]!
   ): [Category_KeyOutput!]! @fdc_generated(from: "Category", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `Order` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  order_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [Order_Data!]!
+  ): [Order_KeyOutput!]! @fdc_generated(from: "Order", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `OrderItem` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  orderItem_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [OrderItem_Data!]!
+  ): [OrderItem_KeyOutput!]! @fdc_generated(from: "OrderItem", purpose: INSERT_MULTIPLE)
   """
   ✨ Insert `Product` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
   """
@@ -45,6 +81,24 @@ extend type Mutation {
     data: Category_Data!
   ): Category_KeyOutput! @fdc_generated(from: "Category", purpose: UPSERT_SINGLE)
   """
+  ✨ Insert or update a single `Order` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Order`.
+  """
+  order_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: Order_Data!
+  ): Order_KeyOutput! @fdc_generated(from: "Order", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `OrderItem` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `OrderItem`.
+  """
+  orderItem_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: OrderItem_Data!
+  ): OrderItem_KeyOutput! @fdc_generated(from: "OrderItem", purpose: UPSERT_SINGLE)
+  """
   ✨ Insert or update a single `Product` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Product`.
   """
   product_upsert(
@@ -62,6 +116,24 @@ extend type Mutation {
     """
     data: [Category_Data!]!
   ): [Category_KeyOutput!]! @fdc_generated(from: "Category", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `Order` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Order`.
+  """
+  order_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [Order_Data!]!
+  ): [Order_KeyOutput!]! @fdc_generated(from: "Order", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `OrderItem` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `OrderItem`.
+  """
+  orderItem_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [OrderItem_Data!]!
+  ): [OrderItem_KeyOutput!]! @fdc_generated(from: "OrderItem", purpose: UPSERT_MULTIPLE)
   """
   ✨ Insert or update `Product` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Product`.
   """
@@ -95,6 +167,54 @@ extend type Mutation {
     """
     data: Category_Data!
   ): Category_KeyOutput @fdc_generated(from: "Category", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `Order` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Order` or `null` if not found.
+  """
+  order_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Order_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Order_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: Order_Data!
+  ): Order_KeyOutput @fdc_generated(from: "Order", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `OrderItem` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `OrderItem` or `null` if not found.
+  """
+  orderItem_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: OrderItem_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: OrderItem_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: OrderItem_Data!
+  ): OrderItem_KeyOutput @fdc_generated(from: "OrderItem", purpose: UPDATE_SINGLE)
   """
   ✨ Update a single `Product` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Product` or `null` if not found.
   """
@@ -139,6 +259,44 @@ extend type Mutation {
     data: Category_Data!
   ): Int! @fdc_generated(from: "Category", purpose: UPDATE_MULTIPLE)
   """
+  ✨ Update `Order` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  order_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: Order_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: Order_Data!
+  ): Int! @fdc_generated(from: "Order", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `OrderItem` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  orderItem_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: OrderItem_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: OrderItem_Data!
+  ): Int! @fdc_generated(from: "OrderItem", purpose: UPDATE_MULTIPLE)
+  """
   ✨ Update `Product` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
   """
   product_updateMany(
@@ -177,6 +335,44 @@ extend type Mutation {
     first: Category_FirstRow
   ): Category_KeyOutput @fdc_generated(from: "Category", purpose: DELETE_SINGLE)
   """
+  ✨ Delete a single `Order` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  order_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Order_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Order_FirstRow
+  ): Order_KeyOutput @fdc_generated(from: "Order", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `OrderItem` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  orderItem_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: OrderItem_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: OrderItem_FirstRow
+  ): OrderItem_KeyOutput @fdc_generated(from: "OrderItem", purpose: DELETE_SINGLE)
+  """
   ✨ Delete a single `Product` based on `id`, `key` or `first` and return its key (or `null` if not found).
   """
   product_delete(
@@ -209,6 +405,34 @@ extend type Mutation {
     """
     all: Boolean = false
   ): Int! @fdc_generated(from: "Category", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `Order` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  order_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: Order_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "Order", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `OrderItem` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  orderItem_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: OrderItem_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "OrderItem", purpose: DELETE_MULTIPLE)
   """
   ✨ Delete `Product` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
   """

@@ -7,6 +7,34 @@ const connectorConfig = {
 };
 exports.connectorConfig = connectorConfig;
 
+function createCategory(dcOrVarsOrOptions, varsOrOptions, options) {
+  const { dc: dcInstance, vars: inputVars, options: inputOpts} = validateAdminArgs(connectorConfig, dcOrVarsOrOptions, varsOrOptions, options, true, true);
+  dcInstance.useGen(true);
+  return dcInstance.executeMutation('CreateCategory', inputVars, inputOpts);
+}
+exports.createCategory = createCategory;
+
+function createProduct(dcOrVarsOrOptions, varsOrOptions, options) {
+  const { dc: dcInstance, vars: inputVars, options: inputOpts} = validateAdminArgs(connectorConfig, dcOrVarsOrOptions, varsOrOptions, options, true, true);
+  dcInstance.useGen(true);
+  return dcInstance.executeMutation('CreateProduct', inputVars, inputOpts);
+}
+exports.createProduct = createProduct;
+
+function createOrder(dcOrVarsOrOptions, varsOrOptions, options) {
+  const { dc: dcInstance, vars: inputVars, options: inputOpts} = validateAdminArgs(connectorConfig, dcOrVarsOrOptions, varsOrOptions, options, true, true);
+  dcInstance.useGen(true);
+  return dcInstance.executeMutation('CreateOrder', inputVars, inputOpts);
+}
+exports.createOrder = createOrder;
+
+function createOrderItem(dcOrVarsOrOptions, varsOrOptions, options) {
+  const { dc: dcInstance, vars: inputVars, options: inputOpts} = validateAdminArgs(connectorConfig, dcOrVarsOrOptions, varsOrOptions, options, true, true);
+  dcInstance.useGen(true);
+  return dcInstance.executeMutation('CreateOrderItem', inputVars, inputOpts);
+}
+exports.createOrderItem = createOrderItem;
+
 function getCategories(dcOrOptions, options) {
   const { dc: dcInstance, options: inputOpts} = validateAdminArgs(connectorConfig, dcOrOptions, options, undefined);
   dcInstance.useGen(true);
@@ -21,17 +49,10 @@ function getProductsByCategory(dcOrVarsOrOptions, varsOrOptions, options) {
 }
 exports.getProductsByCategory = getProductsByCategory;
 
-function createCategory(dcOrVarsOrOptions, varsOrOptions, options) {
-  const { dc: dcInstance, vars: inputVars, options: inputOpts} = validateAdminArgs(connectorConfig, dcOrVarsOrOptions, varsOrOptions, options, true, true);
+function getOrders(dcOrOptions, options) {
+  const { dc: dcInstance, options: inputOpts} = validateAdminArgs(connectorConfig, dcOrOptions, options, undefined);
   dcInstance.useGen(true);
-  return dcInstance.executeMutation('CreateCategory', inputVars, inputOpts);
+  return dcInstance.executeQuery('GetOrders', undefined, inputOpts);
 }
-exports.createCategory = createCategory;
-
-function createProduct(dcOrVarsOrOptions, varsOrOptions, options) {
-  const { dc: dcInstance, vars: inputVars, options: inputOpts} = validateAdminArgs(connectorConfig, dcOrVarsOrOptions, varsOrOptions, options, true, true);
-  dcInstance.useGen(true);
-  return dcInstance.executeMutation('CreateProduct', inputVars, inputOpts);
-}
-exports.createProduct = createProduct;
+exports.getOrders = getOrders;
 

@@ -17,3 +17,16 @@ type Product @table {
   
   category: Category! 
 }
+type Order @table {
+  id: UUID! 
+  total: Float!
+  status: String! @default(value: "received")
+  createdAt: Timestamp! @default(expr: "request.time")
+}
+
+type OrderItem @table {
+  id: UUID! @default(expr: "uuidV4()")
+  productName: String!
+  quantity: Int!
+  order: Order!
+}

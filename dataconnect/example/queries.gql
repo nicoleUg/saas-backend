@@ -18,3 +18,12 @@ query GetProductsByCategory($categoryId: UUID!) @auth(level: PUBLIC) {
     isAvailable
   }
 }
+
+query GetOrders @auth(level: PUBLIC) {
+  orders(orderBy: [{ createdAt: DESC }]) {
+    id
+    total
+    status
+    createdAt
+  }
+}
