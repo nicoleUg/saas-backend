@@ -30,3 +30,11 @@ type OrderItem @table {
   quantity: Int!
   order: Order!
 }
+
+type User @table {
+  id: UUID! @default(expr: "uuidV4()")
+  email: String! @unique
+  passwordHash: String! 
+  name: String!
+  createdAt: Timestamp! @default(expr: "request.time")
+}

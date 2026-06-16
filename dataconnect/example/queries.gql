@@ -27,3 +27,11 @@ query GetOrders @auth(level: PUBLIC) {
     createdAt
   }
 }
+query GetUserByEmail($email: String!) @auth(level: NO_ACCESS) {
+  users(where: { email: { eq: $email } }) {
+    id
+    email
+    passwordHash
+    name
+  }
+}

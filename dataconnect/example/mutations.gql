@@ -14,3 +14,6 @@ mutation CreateOrder($id: UUID!, $total: Float!, $status: String!) @auth(level: 
 mutation CreateOrderItem($orderId: UUID!, $productName: String!, $quantity: Int!) @auth(level: NO_ACCESS) {
   orderItem_insert(data: { orderId: $orderId, productName: $productName, quantity: $quantity })
 }
+mutation CreateUser($email: String!, $passwordHash: String!, $name: String!) @auth(level: NO_ACCESS) {
+  user_insert(data: { email: $email, passwordHash: $passwordHash, name: $name })
+}
