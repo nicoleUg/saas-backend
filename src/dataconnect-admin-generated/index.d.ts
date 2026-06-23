@@ -84,6 +84,7 @@ export interface CreateUserVariables {
   email: string;
   passwordHash: string;
   name: string;
+  role?: string | null;
 }
 
 export interface DeleteCategoryData {
@@ -224,6 +225,7 @@ export interface GetUserByEmailData {
     email: string;
     passwordHash: string;
     name: string;
+    role: string;
   } & User_Key)[];
 }
 

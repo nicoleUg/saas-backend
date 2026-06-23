@@ -20,7 +20,7 @@ export class AuthService {
     const saltRounds = 10;
     const passwordHash = await bcrypt.hash(dto.password, saltRounds);
 
-    await this.authRepository.createUser(dto.email, passwordHash, dto.name);
+    await this.authRepository.createUser(dto.email, passwordHash, dto.name, dto.role);
     return { message: 'Usuario registrado exitosamente' };
   }
 
@@ -35,7 +35,7 @@ export class AuthService {
       throw new UnauthorizedException('Credenciales inválidas');
     }
 
-    const payload = { sub: user.id, email: user.email, name: user.name };
+    const payload = { sub: user.id, email: user.email, name: user.name, role: user.role };
     const token = this.jwtService.sign(payload);
 
     return {
@@ -44,6 +44,7 @@ export class AuthService {
         id: user.id,
         name: user.name,
         email: user.email,
+        role: user.role,
       }
     };
   }

@@ -3,7 +3,7 @@ import { AppModule } from './app.module';
 import * as admin from 'firebase-admin';
 
 async function bootstrap() {
-  if (!process.env.DATA_CONNECT_EMULATOR_HOST && process.env.USE_EMULATOR === 'true') {
+  if (!process.env.DATA_CONNECT_EMULATOR_HOST && process.env.NODE_ENV !== 'production' && process.env.CONNECT_TO_PRODUCTION !== 'true') {
     process.env.DATA_CONNECT_EMULATOR_HOST = '127.0.0.1:9399';
   }
 

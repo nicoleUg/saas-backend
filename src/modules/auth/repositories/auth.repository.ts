@@ -9,8 +9,8 @@ export class AuthRepository {
     return response.data.users[0] || null; 
   }
 
-  async createUser(email: string, passwordHash: string, name: string) {
-    const response = await createUser({ email, passwordHash, name });
+  async createUser(email: string, passwordHash: string, name: string, role?: string) {
+    const response = await createUser({ email, passwordHash, name, role });
     return response.data;
   }
 }

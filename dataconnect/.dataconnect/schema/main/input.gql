@@ -1984,6 +1984,14 @@ input User_Data {
   """
   passwordHash_expr: String_Expr @fdc_forbiddenInVariables
   """
+  ✨ Generated from Field `User`.`role` of type `String!`
+  """
+  role: String
+  """
+  ✨ `_expr` server value variant of `role` (✨ Generated from Field `User`.`role` of type `String!`)
+  """
+  role_expr: String_Expr @fdc_forbiddenInVariables
+  """
   ✨ Generated from Field `User`.`favorites_on_user` of type `[Favorite!]!`
   """
   favorites_on_user: [Favorite_Data!]
@@ -2028,6 +2036,10 @@ input User_Filter {
   ✨ Generated from Field `User`.`passwordHash` of type `String!`
   """
   passwordHash: String_Filter
+  """
+  ✨ Generated from Field `User`.`role` of type `String!`
+  """
+  role: String_Filter
   """
   ✨ Generated from Field `User`.`favorites_on_user` of type `[Favorite!]!`
   """
@@ -2095,6 +2107,10 @@ input User_Having {
   """
   passwordHash_count: Int_Filter
   """
+  ✨ Generated from Field `User`.`role_count` of type `Int!`
+  """
+  role_count: Int_Filter
+  """
   ✨ Generated from Field `User`.`createdAt_min` of type `Timestamp`
   """
   createdAt_min: Timestamp_Filter
@@ -2154,6 +2170,10 @@ input User_Order {
   """
   passwordHash: OrderDirection
   """
+  ✨ Generated from Field `User`.`role` of type `String!`
+  """
+  role: OrderDirection
+  """
   ✨ Generated from Field `User`.`_count` of type `Int!`
   """
   _count: OrderDirection
@@ -2177,6 +2197,10 @@ input User_Order {
   ✨ Generated from Field `User`.`passwordHash_count` of type `Int!`
   """
   passwordHash_count: OrderDirection
+  """
+  ✨ Generated from Field `User`.`role_count` of type `Int!`
+  """
+  role_count: OrderDirection
   """
   ✨ Generated from Field `User`.`createdAt_min` of type `Timestamp`
   """

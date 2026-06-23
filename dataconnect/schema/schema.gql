@@ -43,6 +43,7 @@ type User @table {
   email: String! @unique
   passwordHash: String! 
   name: String!
+  role: String! @default(value: "client")
   createdAt: Timestamp! @default(expr: "request.time")
 }
 
