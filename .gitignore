@@ -152,3 +152,6 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 .tmp/
 tmp/
 temp/
+
+# Firebase Service Account
+firebase-service-account.json
