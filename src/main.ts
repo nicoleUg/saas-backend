@@ -32,7 +32,7 @@ async function bootstrap() {
     }),
   );
   
-  await app.listen(3000);
-  console.log(`Servidor backend corriendo en: http://localhost:3000`);
+  await app.listen(3000, '0.0.0.0');
+  console.log(`Servidor backend corriendo en: http://localhost:3000 (escuchando en todas las interfaces para red local)`);
 }
 bootstrap();
