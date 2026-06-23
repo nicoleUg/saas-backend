@@ -23,8 +23,8 @@ export class MenuRepository {
   async createCategory(dto: CreateCategoryDto) {
     const response = await createCategory({ 
       name: dto.name, 
-      orderIndex: dto.orderIndex, 
-      imageUrl: dto.imageUrl 
+      orderIndex: dto.orderIndex,
+      imageUrl: dto.imageUrl
     });
     return response.data;
   }
@@ -34,7 +34,8 @@ export class MenuRepository {
       categoryId: dto.categoryId, 
       name: dto.name, 
       description: dto.description, 
-      price: dto.price 
+      price: dto.price,
+      imageUrl: dto.imageUrl
     });
     return response.data;
   }

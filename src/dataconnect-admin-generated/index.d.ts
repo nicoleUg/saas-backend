@@ -52,6 +52,7 @@ export interface CreateProductVariables {
   name: string;
   description: string;
   price: number;
+  imageUrl?: string | null;
 }
 
 export interface CreateUserData {
