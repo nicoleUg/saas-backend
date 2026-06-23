@@ -1,9 +1,12 @@
-import { Controller, Get, Post, Body, Param, UseInterceptors, UploadedFile } from '@nestjs/common';
+import { Controller, Get, Post, Patch, Delete, Body, Param, UseInterceptors, UploadedFile, UseGuards } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { MenuService } from '../services/menu.service';
 import { CreateCategoryDto } from '../dto/create-category.dto';
 import { CreateProductDto } from '../dto/create-product.dto';
+import { UpdateCategoryDto } from '../dto/update-category.dto';
+import { UpdateProductDto } from '../dto/update-product.dto';
 import { StorageService } from '../../storage/services/storage.service';
+import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 
 @Controller('menu')
 export class MenuController {
@@ -56,5 +59,65 @@ export class MenuController {
 
     await this.menuService.addProduct(createProductDto);
     return { message: 'Producto creado con éxito', imageUrl };
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Patch('products/:id')
+  @UseInterceptors(FileInterceptor('image'))
+  async updateProduct(
+    @Param('id') id: string,
+    @Body() updateProductDto: UpdateProductDto,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    if (file) {
+      const imageUrl = await this.storageService.uploadFile(file, 'products');
+      updateProductDto.imageUrl = imageUrl;
+    }
+
+    if (updateProductDto.price !== undefined && updateProductDto.price !== null) {
+      updateProductDto.price = Number(updateProductDto.price);
+    }
+
+    if (updateProductDto.isAvailable !== undefined && updateProductDto.isAvailable !== null) {
+      updateProductDto.isAvailable = String(updateProductDto.isAvailable) === 'true';
+    }
+
+    await this.menuService.updateProduct(id, updateProductDto);
+    return { message: 'Producto actualizado con éxito' };
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Delete('products/:id')
+  async deleteProduct(@Param('id') id: string) {
+    await this.menuService.removeProduct(id);
+    return { message: 'Producto eliminado con éxito' };
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Patch('categories/:id')
+  @UseInterceptors(FileInterceptor('image'))
+  async updateCategory(
+    @Param('id') id: string,
+    @Body() updateCategoryDto: UpdateCategoryDto,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    if (file) {
+      const imageUrl = await this.storageService.uploadFile(file, 'categories');
+      updateCategoryDto.imageUrl = imageUrl;
+    }
+
+    if (updateCategoryDto.orderIndex !== undefined && updateCategoryDto.orderIndex !== null) {
+      updateCategoryDto.orderIndex = Number(updateCategoryDto.orderIndex);
+    }
+
+    await this.menuService.updateCategory(id, updateCategoryDto);
+    return { message: 'Categoría actualizada con éxito' };
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Delete('categories/:id')
+  async deleteCategory(@Param('id') id: string) {
+    await this.menuService.removeCategory(id);
+    return { message: 'Categoría eliminada con éxito' };
   }
 }
