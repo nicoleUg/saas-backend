@@ -11,12 +11,20 @@ export class ReviewsController {
   @Post()
   async createReview(@Body() dto: CreateReviewDto, @Request() req) {
     const userId = req.user.id;
-    await this.reviewsService.createReview(userId, dto);
-    return { message: 'Valoración guardada con éxito' };
+    console.log('[ReviewsController] Recibida solicitud para crear valoración:', { userId, dto });
+    try {
+      const result = await this.reviewsService.createReview(userId, dto);
+      console.log('[ReviewsController] Valoración creada exitosamente:', result);
+      return { message: 'Valoración guardada con éxito' };
+    } catch (e) {
+      console.error('[ReviewsController] Error en createReview:', e);
+      throw e;
+    }
   }
 
   @Get(':productId')
   async getReviews(@Param('productId') productId: string) {
+    console.log('[ReviewsController] Obteniendo valoraciones para el producto:', productId);
     return this.reviewsService.getReviewsForProduct(productId);
   }
 }
