@@ -7,5 +7,6 @@ export class CreateOrderDto {
   id: string;
   total: number;
   status: string;
+  tableNumber: number;
   items: OrderItemDto[];
 }

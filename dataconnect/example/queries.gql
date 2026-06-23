@@ -24,6 +24,7 @@ query GetOrders @auth(level: PUBLIC) {
     id
     total
     status
+    tableNumber
     createdAt
   }
 }
@@ -41,6 +42,7 @@ query GetOrderById($id: UUID!) @auth(level: PUBLIC) {
     id
     total
     status
+    tableNumber
     createdAt
   }
   orderItems(where: { orderId: { eq: $id } }) {
@@ -55,6 +57,7 @@ query GetOrdersWithItems @auth(level: PUBLIC) {
     id
     total
     status
+    tableNumber
     createdAt
   }
   orderItems {

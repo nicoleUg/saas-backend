@@ -17,10 +17,17 @@ type Product @table {
   
   category: Category! 
 }
+type RestaurantTable @table {
+  id: UUID! @default(expr: "uuidV4()")
+  number: Int! @unique
+  status: String! @default(value: "free") # free (libre), occupied (ocupada)
+}
+
 type Order @table {
   id: UUID! 
   total: Float!
   status: String! @default(value: "received")
+  tableNumber: Int!
   createdAt: Timestamp! @default(expr: "request.time")
 }
 

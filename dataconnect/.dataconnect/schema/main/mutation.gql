@@ -45,6 +45,15 @@ extend type Mutation {
     data: Product_Data!
   ): Product_KeyOutput! @fdc_generated(from: "Product", purpose: INSERT_SINGLE)
   """
+  ✨ Insert a single `RestaurantTable` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  restaurantTable_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: RestaurantTable_Data!
+  ): RestaurantTable_KeyOutput! @fdc_generated(from: "RestaurantTable", purpose: INSERT_SINGLE)
+  """
   ✨ Insert a single `Review` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
   """
   review_insert(
@@ -107,6 +116,15 @@ extend type Mutation {
     """
     data: [Product_Data!]!
   ): [Product_KeyOutput!]! @fdc_generated(from: "Product", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `RestaurantTable` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  restaurantTable_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [RestaurantTable_Data!]!
+  ): [RestaurantTable_KeyOutput!]! @fdc_generated(from: "RestaurantTable", purpose: INSERT_MULTIPLE)
   """
   ✨ Insert `Review` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
   """
@@ -171,6 +189,15 @@ extend type Mutation {
     data: Product_Data!
   ): Product_KeyOutput! @fdc_generated(from: "Product", purpose: UPSERT_SINGLE)
   """
+  ✨ Insert or update a single `RestaurantTable` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `RestaurantTable`.
+  """
+  restaurantTable_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: RestaurantTable_Data!
+  ): RestaurantTable_KeyOutput! @fdc_generated(from: "RestaurantTable", purpose: UPSERT_SINGLE)
+  """
   ✨ Insert or update a single `Review` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Review`.
   """
   review_upsert(
@@ -233,6 +260,15 @@ extend type Mutation {
     """
     data: [Product_Data!]!
   ): [Product_KeyOutput!]! @fdc_generated(from: "Product", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `RestaurantTable` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `RestaurantTable`.
+  """
+  restaurantTable_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [RestaurantTable_Data!]!
+  ): [RestaurantTable_KeyOutput!]! @fdc_generated(from: "RestaurantTable", purpose: UPSERT_MULTIPLE)
   """
   ✨ Insert or update `Review` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Review`.
   """
@@ -371,6 +407,30 @@ extend type Mutation {
     """
     data: Product_Data!
   ): Product_KeyOutput @fdc_generated(from: "Product", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `RestaurantTable` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `RestaurantTable` or `null` if not found.
+  """
+  restaurantTable_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: RestaurantTable_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: RestaurantTable_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: RestaurantTable_Data!
+  ): RestaurantTable_KeyOutput @fdc_generated(from: "RestaurantTable", purpose: UPDATE_SINGLE)
   """
   ✨ Update a single `Review` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Review` or `null` if not found.
   """
@@ -515,6 +575,25 @@ extend type Mutation {
     data: Product_Data!
   ): Int! @fdc_generated(from: "Product", purpose: UPDATE_MULTIPLE)
   """
+  ✨ Update `RestaurantTable` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  restaurantTable_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: RestaurantTable_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: RestaurantTable_Data!
+  ): Int! @fdc_generated(from: "RestaurantTable", purpose: UPDATE_MULTIPLE)
+  """
   ✨ Update `Review` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
   """
   review_updateMany(
@@ -648,6 +727,25 @@ extend type Mutation {
     first: Product_FirstRow
   ): Product_KeyOutput @fdc_generated(from: "Product", purpose: DELETE_SINGLE)
   """
+  ✨ Delete a single `RestaurantTable` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  restaurantTable_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: RestaurantTable_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: RestaurantTable_FirstRow
+  ): RestaurantTable_KeyOutput @fdc_generated(from: "RestaurantTable", purpose: DELETE_SINGLE)
+  """
   ✨ Delete a single `Review` based on `id`, `key` or `first` and return its key (or `null` if not found).
   """
   review_delete(
@@ -755,6 +853,20 @@ extend type Mutation {
     """
     all: Boolean = false
   ): Int! @fdc_generated(from: "Product", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `RestaurantTable` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  restaurantTable_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: RestaurantTable_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "RestaurantTable", purpose: DELETE_MULTIPLE)
   """
   ✨ Delete `Review` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
   """

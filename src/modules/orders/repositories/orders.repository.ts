@@ -10,6 +10,7 @@ export class OrdersRepository {
       id: dto.id,
       total: dto.total,
       status: dto.status,
+      tableNumber: dto.tableNumber,
     });
 
     for (const item of dto.items) {
@@ -42,6 +43,7 @@ export class OrdersRepository {
       id: response.data.order.id,
       total: response.data.order.total,
       status: response.data.order.status,
+      tableNumber: response.data.order.tableNumber,
       createdAt: response.data.order.createdAt,
       items: response.data.orderItems.map(item => ({
         id: item.id,

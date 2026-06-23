@@ -7,8 +7,8 @@ mutation CreateCategory($name: String!, $orderIndex: Int!, $imageUrl: String) @a
 mutation CreateProduct($categoryId: UUID!, $name: String!, $description: String!, $price: Float!, $imageUrl: String) @auth(level: NO_ACCESS) {
   product_insert(data: { categoryId: $categoryId, name: $name, description: $description, price: $price, imageUrl: $imageUrl })
 }
-mutation CreateOrder($id: UUID!, $total: Float!, $status: String!) @auth(level: NO_ACCESS) {
-  order_insert(data: { id: $id, total: $total, status: $status })
+mutation CreateOrder($id: UUID!, $total: Float!, $status: String!, $tableNumber: Int!) @auth(level: NO_ACCESS) {
+  order_insert(data: { id: $id, total: $total, status: $status, tableNumber: $tableNumber })
 }
 
 mutation CreateOrderItem($orderId: UUID!, $productName: String!, $quantity: Int!) @auth(level: NO_ACCESS) {

@@ -50,6 +50,7 @@ export interface CreateOrderVariables {
   id: UUIDString;
   total: number;
   status: string;
+  tableNumber: number;
 }
 
 export interface CreateProductData {
@@ -147,6 +148,7 @@ export interface GetOrderByIdData {
     id: UUIDString;
     total: number;
     status: string;
+    tableNumber: number;
     createdAt: TimestampString;
   } & Order_Key;
   orderItems: ({
@@ -165,6 +167,7 @@ export interface GetOrdersData {
     id: UUIDString;
     total: number;
     status: string;
+    tableNumber: number;
     createdAt: TimestampString;
   } & Order_Key)[];
 }
@@ -174,6 +177,7 @@ export interface GetOrdersWithItemsData {
     id: UUIDString;
     total: number;
     status: string;
+    tableNumber: number;
     createdAt: TimestampString;
   } & Order_Key)[];
   orderItems: ({
@@ -240,6 +244,11 @@ export interface Order_Key {
 export interface Product_Key {
   id: UUIDString;
   __typename?: 'Product_Key';
+}
+
+export interface RestaurantTable_Key {
+  id: UUIDString;
+  __typename?: 'RestaurantTable_Key';
 }
 
 export interface Review_Key {
