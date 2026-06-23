@@ -8,7 +8,7 @@ export class StorageService {
 
   constructor() {
     // Inicializamos la referencia al bucket por defecto de tu proyecto de Firebase
-    this.bucket = getStorage().bucket('restaurantesaas-c1ee0.appspot.com');
+    this.bucket = getStorage().bucket('restaurantesaas-c1ee0.firebasestorage.app');
   }
 
   async uploadFile(file: Express.Multer.File, folder: string = 'menu'): Promise<string> {
