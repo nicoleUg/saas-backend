@@ -13,4 +13,12 @@ export class OrdersService {
   async getOrders() {
     return this.ordersRepository.getAllOrders();
   }
+
+  async updateStatus(id: string, status: string) {
+    return this.ordersRepository.updateStatus(id, status);
+  }
+
+  async getOrderById(id: string) {
+    return this.ordersRepository.getOrderById(id);
+  }
 }

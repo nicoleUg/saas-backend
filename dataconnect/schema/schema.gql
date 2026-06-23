@@ -38,3 +38,19 @@ type User @table {
   name: String!
   createdAt: Timestamp! @default(expr: "request.time")
 }
+
+type Review @table {
+  id: UUID! @default(expr: "uuidV4()")
+  rating: Int!
+  comment: String!
+  product: Product!
+  user: User!
+  createdAt: Timestamp! @default(expr: "request.time")
+}
+
+type Favorite @table {
+  id: UUID! @default(expr: "uuidV4()")
+  product: Product!
+  user: User!
+  createdAt: Timestamp! @default(expr: "request.time")
+}

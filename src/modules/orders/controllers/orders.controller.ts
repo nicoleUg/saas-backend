@@ -1,4 +1,4 @@
-import { Controller, Post, Get, Body, UseGuards, Request } from '@nestjs/common';
+import { Controller, Post, Get, Patch, Body, UseGuards, Request, Param } from '@nestjs/common';
 import { OrdersService } from '../services/orders.service';
 import { CreateOrderDto } from '../dto/create-order.dto';
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
@@ -19,5 +19,19 @@ export class OrdersController {
   @Get()
   async getOrders() {
     return this.ordersService.getOrders();
+  }
+
+  @Patch(':id/status')
+  async updateOrderStatus(
+    @Param('id') id: string,
+    @Body('status') status: string,
+  ) {
+    await this.ordersService.updateStatus(id, status);
+    return { message: 'Estado del pedido actualizado con éxito' };
+  }
+
+  @Get(':id')
+  async getOrderById(@Param('id') id: string) {
+    return this.ordersService.getOrderById(id);
   }
 }

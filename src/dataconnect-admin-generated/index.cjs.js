@@ -42,6 +42,62 @@ function createUser(dcOrVarsOrOptions, varsOrOptions, options) {
 }
 exports.createUser = createUser;
 
+function updateOrderStatus(dcOrVarsOrOptions, varsOrOptions, options) {
+  const { dc: dcInstance, vars: inputVars, options: inputOpts} = validateAdminArgs(connectorConfig, dcOrVarsOrOptions, varsOrOptions, options, true, true);
+  dcInstance.useGen(true);
+  return dcInstance.executeMutation('UpdateOrderStatus', inputVars, inputOpts);
+}
+exports.updateOrderStatus = updateOrderStatus;
+
+function updateProduct(dcOrVarsOrOptions, varsOrOptions, options) {
+  const { dc: dcInstance, vars: inputVars, options: inputOpts} = validateAdminArgs(connectorConfig, dcOrVarsOrOptions, varsOrOptions, options, true, true);
+  dcInstance.useGen(true);
+  return dcInstance.executeMutation('UpdateProduct', inputVars, inputOpts);
+}
+exports.updateProduct = updateProduct;
+
+function deleteProduct(dcOrVarsOrOptions, varsOrOptions, options) {
+  const { dc: dcInstance, vars: inputVars, options: inputOpts} = validateAdminArgs(connectorConfig, dcOrVarsOrOptions, varsOrOptions, options, true, true);
+  dcInstance.useGen(true);
+  return dcInstance.executeMutation('DeleteProduct', inputVars, inputOpts);
+}
+exports.deleteProduct = deleteProduct;
+
+function updateCategory(dcOrVarsOrOptions, varsOrOptions, options) {
+  const { dc: dcInstance, vars: inputVars, options: inputOpts} = validateAdminArgs(connectorConfig, dcOrVarsOrOptions, varsOrOptions, options, true, true);
+  dcInstance.useGen(true);
+  return dcInstance.executeMutation('UpdateCategory', inputVars, inputOpts);
+}
+exports.updateCategory = updateCategory;
+
+function deleteCategory(dcOrVarsOrOptions, varsOrOptions, options) {
+  const { dc: dcInstance, vars: inputVars, options: inputOpts} = validateAdminArgs(connectorConfig, dcOrVarsOrOptions, varsOrOptions, options, true, true);
+  dcInstance.useGen(true);
+  return dcInstance.executeMutation('DeleteCategory', inputVars, inputOpts);
+}
+exports.deleteCategory = deleteCategory;
+
+function createReview(dcOrVarsOrOptions, varsOrOptions, options) {
+  const { dc: dcInstance, vars: inputVars, options: inputOpts} = validateAdminArgs(connectorConfig, dcOrVarsOrOptions, varsOrOptions, options, true, true);
+  dcInstance.useGen(true);
+  return dcInstance.executeMutation('CreateReview', inputVars, inputOpts);
+}
+exports.createReview = createReview;
+
+function createFavorite(dcOrVarsOrOptions, varsOrOptions, options) {
+  const { dc: dcInstance, vars: inputVars, options: inputOpts} = validateAdminArgs(connectorConfig, dcOrVarsOrOptions, varsOrOptions, options, true, true);
+  dcInstance.useGen(true);
+  return dcInstance.executeMutation('CreateFavorite', inputVars, inputOpts);
+}
+exports.createFavorite = createFavorite;
+
+function deleteFavorite(dcOrVarsOrOptions, varsOrOptions, options) {
+  const { dc: dcInstance, vars: inputVars, options: inputOpts} = validateAdminArgs(connectorConfig, dcOrVarsOrOptions, varsOrOptions, options, true, true);
+  dcInstance.useGen(true);
+  return dcInstance.executeMutation('DeleteFavorite', inputVars, inputOpts);
+}
+exports.deleteFavorite = deleteFavorite;
+
 function getCategories(dcOrOptions, options) {
   const { dc: dcInstance, options: inputOpts} = validateAdminArgs(connectorConfig, dcOrOptions, options, undefined);
   dcInstance.useGen(true);
@@ -69,4 +125,32 @@ function getUserByEmail(dcOrVarsOrOptions, varsOrOptions, options) {
   return dcInstance.executeQuery('GetUserByEmail', inputVars, inputOpts);
 }
 exports.getUserByEmail = getUserByEmail;
+
+function getOrderById(dcOrVarsOrOptions, varsOrOptions, options) {
+  const { dc: dcInstance, vars: inputVars, options: inputOpts} = validateAdminArgs(connectorConfig, dcOrVarsOrOptions, varsOrOptions, options, true, true);
+  dcInstance.useGen(true);
+  return dcInstance.executeQuery('GetOrderById', inputVars, inputOpts);
+}
+exports.getOrderById = getOrderById;
+
+function getOrdersWithItems(dcOrOptions, options) {
+  const { dc: dcInstance, options: inputOpts} = validateAdminArgs(connectorConfig, dcOrOptions, options, undefined);
+  dcInstance.useGen(true);
+  return dcInstance.executeQuery('GetOrdersWithItems', undefined, inputOpts);
+}
+exports.getOrdersWithItems = getOrdersWithItems;
+
+function getReviewsByProduct(dcOrVarsOrOptions, varsOrOptions, options) {
+  const { dc: dcInstance, vars: inputVars, options: inputOpts} = validateAdminArgs(connectorConfig, dcOrVarsOrOptions, varsOrOptions, options, true, true);
+  dcInstance.useGen(true);
+  return dcInstance.executeQuery('GetReviewsByProduct', inputVars, inputOpts);
+}
+exports.getReviewsByProduct = getReviewsByProduct;
+
+function getFavorites(dcOrVarsOrOptions, varsOrOptions, options) {
+  const { dc: dcInstance, vars: inputVars, options: inputOpts} = validateAdminArgs(connectorConfig, dcOrVarsOrOptions, varsOrOptions, options, true, true);
+  dcInstance.useGen(true);
+  return dcInstance.executeQuery('GetFavorites', inputVars, inputOpts);
+}
+exports.getFavorites = getFavorites;
 

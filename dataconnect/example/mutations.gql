@@ -17,3 +17,35 @@ mutation CreateOrderItem($orderId: UUID!, $productName: String!, $quantity: Int!
 mutation CreateUser($email: String!, $passwordHash: String!, $name: String!) @auth(level: NO_ACCESS) {
   user_insert(data: { email: $email, passwordHash: $passwordHash, name: $name })
 }
+
+mutation UpdateOrderStatus($id: UUID!, $status: String!) @auth(level: NO_ACCESS) {
+  order_update(key: { id: $id }, data: { status: $status })
+}
+
+mutation UpdateProduct($id: UUID!, $categoryId: UUID, $name: String, $description: String, $price: Float, $imageUrl: String, $isAvailable: Boolean) @auth(level: NO_ACCESS) {
+  product_update(key: { id: $id }, data: { categoryId: $categoryId, name: $name, description: $description, price: $price, imageUrl: $imageUrl, isAvailable: $isAvailable })
+}
+
+mutation DeleteProduct($id: UUID!) @auth(level: NO_ACCESS) {
+  product_delete(key: { id: $id })
+}
+
+mutation UpdateCategory($id: UUID!, $name: String, $orderIndex: Int, $imageUrl: String) @auth(level: NO_ACCESS) {
+  category_update(key: { id: $id }, data: { name: $name, orderIndex: $orderIndex, imageUrl: $imageUrl })
+}
+
+mutation DeleteCategory($id: UUID!) @auth(level: NO_ACCESS) {
+  category_delete(key: { id: $id })
+}
+
+mutation CreateReview($productId: UUID!, $userId: UUID!, $rating: Int!, $comment: String!) @auth(level: NO_ACCESS) {
+  review_insert(data: { productId: $productId, userId: $userId, rating: $rating, comment: $comment })
+}
+
+mutation CreateFavorite($productId: UUID!, $userId: UUID!) @auth(level: NO_ACCESS) {
+  favorite_insert(data: { productId: $productId, userId: $userId })
+}
+
+mutation DeleteFavorite($productId: UUID!, $userId: UUID!) @auth(level: NO_ACCESS) {
+  favorite_deleteMany(where: { productId: { eq: $productId }, userId: { eq: $userId } })
+}

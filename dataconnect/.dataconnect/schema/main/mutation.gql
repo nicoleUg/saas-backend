@@ -9,6 +9,15 @@ extend type Mutation {
     data: Category_Data!
   ): Category_KeyOutput! @fdc_generated(from: "Category", purpose: INSERT_SINGLE)
   """
+  ✨ Insert a single `Favorite` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  favorite_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: Favorite_Data!
+  ): Favorite_KeyOutput! @fdc_generated(from: "Favorite", purpose: INSERT_SINGLE)
+  """
   ✨ Insert a single `Order` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
   """
   order_insert(
@@ -36,6 +45,15 @@ extend type Mutation {
     data: Product_Data!
   ): Product_KeyOutput! @fdc_generated(from: "Product", purpose: INSERT_SINGLE)
   """
+  ✨ Insert a single `Review` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  review_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: Review_Data!
+  ): Review_KeyOutput! @fdc_generated(from: "Review", purpose: INSERT_SINGLE)
+  """
   ✨ Insert a single `User` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
   """
   user_insert(
@@ -53,6 +71,15 @@ extend type Mutation {
     """
     data: [Category_Data!]!
   ): [Category_KeyOutput!]! @fdc_generated(from: "Category", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `Favorite` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  favorite_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [Favorite_Data!]!
+  ): [Favorite_KeyOutput!]! @fdc_generated(from: "Favorite", purpose: INSERT_MULTIPLE)
   """
   ✨ Insert `Order` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
   """
@@ -81,6 +108,15 @@ extend type Mutation {
     data: [Product_Data!]!
   ): [Product_KeyOutput!]! @fdc_generated(from: "Product", purpose: INSERT_MULTIPLE)
   """
+  ✨ Insert `Review` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  review_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [Review_Data!]!
+  ): [Review_KeyOutput!]! @fdc_generated(from: "Review", purpose: INSERT_MULTIPLE)
+  """
   ✨ Insert `User` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
   """
   user_insertMany(
@@ -98,6 +134,15 @@ extend type Mutation {
     """
     data: Category_Data!
   ): Category_KeyOutput! @fdc_generated(from: "Category", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `Favorite` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Favorite`.
+  """
+  favorite_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: Favorite_Data!
+  ): Favorite_KeyOutput! @fdc_generated(from: "Favorite", purpose: UPSERT_SINGLE)
   """
   ✨ Insert or update a single `Order` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Order`.
   """
@@ -126,6 +171,15 @@ extend type Mutation {
     data: Product_Data!
   ): Product_KeyOutput! @fdc_generated(from: "Product", purpose: UPSERT_SINGLE)
   """
+  ✨ Insert or update a single `Review` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Review`.
+  """
+  review_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: Review_Data!
+  ): Review_KeyOutput! @fdc_generated(from: "Review", purpose: UPSERT_SINGLE)
+  """
   ✨ Insert or update a single `User` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `User`.
   """
   user_upsert(
@@ -143,6 +197,15 @@ extend type Mutation {
     """
     data: [Category_Data!]!
   ): [Category_KeyOutput!]! @fdc_generated(from: "Category", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `Favorite` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Favorite`.
+  """
+  favorite_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [Favorite_Data!]!
+  ): [Favorite_KeyOutput!]! @fdc_generated(from: "Favorite", purpose: UPSERT_MULTIPLE)
   """
   ✨ Insert or update `Order` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Order`.
   """
@@ -170,6 +233,15 @@ extend type Mutation {
     """
     data: [Product_Data!]!
   ): [Product_KeyOutput!]! @fdc_generated(from: "Product", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `Review` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Review`.
+  """
+  review_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [Review_Data!]!
+  ): [Review_KeyOutput!]! @fdc_generated(from: "Review", purpose: UPSERT_MULTIPLE)
   """
   ✨ Insert or update `User` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `User`.
   """
@@ -203,6 +275,30 @@ extend type Mutation {
     """
     data: Category_Data!
   ): Category_KeyOutput @fdc_generated(from: "Category", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `Favorite` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Favorite` or `null` if not found.
+  """
+  favorite_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Favorite_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Favorite_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: Favorite_Data!
+  ): Favorite_KeyOutput @fdc_generated(from: "Favorite", purpose: UPDATE_SINGLE)
   """
   ✨ Update a single `Order` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Order` or `null` if not found.
   """
@@ -276,6 +372,30 @@ extend type Mutation {
     data: Product_Data!
   ): Product_KeyOutput @fdc_generated(from: "Product", purpose: UPDATE_SINGLE)
   """
+  ✨ Update a single `Review` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Review` or `null` if not found.
+  """
+  review_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Review_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Review_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: Review_Data!
+  ): Review_KeyOutput @fdc_generated(from: "Review", purpose: UPDATE_SINGLE)
+  """
   ✨ Update a single `User` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `User` or `null` if not found.
   """
   user_update(
@@ -318,6 +438,25 @@ extend type Mutation {
     """
     data: Category_Data!
   ): Int! @fdc_generated(from: "Category", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `Favorite` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  favorite_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: Favorite_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: Favorite_Data!
+  ): Int! @fdc_generated(from: "Favorite", purpose: UPDATE_MULTIPLE)
   """
   ✨ Update `Order` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
   """
@@ -376,6 +515,25 @@ extend type Mutation {
     data: Product_Data!
   ): Int! @fdc_generated(from: "Product", purpose: UPDATE_MULTIPLE)
   """
+  ✨ Update `Review` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  review_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: Review_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: Review_Data!
+  ): Int! @fdc_generated(from: "Review", purpose: UPDATE_MULTIPLE)
+  """
   ✨ Update `User` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
   """
   user_updateMany(
@@ -413,6 +571,25 @@ extend type Mutation {
     """
     first: Category_FirstRow
   ): Category_KeyOutput @fdc_generated(from: "Category", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `Favorite` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  favorite_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Favorite_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Favorite_FirstRow
+  ): Favorite_KeyOutput @fdc_generated(from: "Favorite", purpose: DELETE_SINGLE)
   """
   ✨ Delete a single `Order` based on `id`, `key` or `first` and return its key (or `null` if not found).
   """
@@ -471,6 +648,25 @@ extend type Mutation {
     first: Product_FirstRow
   ): Product_KeyOutput @fdc_generated(from: "Product", purpose: DELETE_SINGLE)
   """
+  ✨ Delete a single `Review` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  review_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Review_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Review_FirstRow
+  ): Review_KeyOutput @fdc_generated(from: "Review", purpose: DELETE_SINGLE)
+  """
   ✨ Delete a single `User` based on `id`, `key` or `first` and return its key (or `null` if not found).
   """
   user_delete(
@@ -503,6 +699,20 @@ extend type Mutation {
     """
     all: Boolean = false
   ): Int! @fdc_generated(from: "Category", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `Favorite` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  favorite_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: Favorite_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "Favorite", purpose: DELETE_MULTIPLE)
   """
   ✨ Delete `Order` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
   """
@@ -545,6 +755,20 @@ extend type Mutation {
     """
     all: Boolean = false
   ): Int! @fdc_generated(from: "Product", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `Review` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  review_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: Review_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "Review", purpose: DELETE_MULTIPLE)
   """
   ✨ Delete `User` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
   """

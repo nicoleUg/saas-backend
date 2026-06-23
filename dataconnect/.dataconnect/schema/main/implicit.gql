@@ -1,3 +1,13 @@
+extend type Favorite {
+  """
+  ✨ Implicit foreign key field based on `Favorite`.`product`. It must match the value of `Product`.`id`. See `@ref` for how to customize it.
+  """
+  productId: UUID! @fdc_generated(from: "Favorite.product", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `Favorite`.`user`. It must match the value of `User`.`id`. See `@ref` for how to customize it.
+  """
+  userId: UUID! @fdc_generated(from: "Favorite.user", purpose: IMPLICIT_REF_FIELD)
+}
 extend type OrderItem {
   """
   ✨ Implicit foreign key field based on `OrderItem`.`order`. It must match the value of `Order`.`id`. See `@ref` for how to customize it.
@@ -9,4 +19,14 @@ extend type Product {
   ✨ Implicit foreign key field based on `Product`.`category`. It must match the value of `Category`.`id`. See `@ref` for how to customize it.
   """
   categoryId: UUID! @fdc_generated(from: "Product.category", purpose: IMPLICIT_REF_FIELD)
+}
+extend type Review {
+  """
+  ✨ Implicit foreign key field based on `Review`.`product`. It must match the value of `Product`.`id`. See `@ref` for how to customize it.
+  """
+  productId: UUID! @fdc_generated(from: "Review.product", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `Review`.`user`. It must match the value of `User`.`id`. See `@ref` for how to customize it.
+  """
+  userId: UUID! @fdc_generated(from: "Review.user", purpose: IMPLICIT_REF_FIELD)
 }

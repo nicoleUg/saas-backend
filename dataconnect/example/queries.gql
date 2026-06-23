@@ -35,3 +35,57 @@ query GetUserByEmail($email: String!) @auth(level: NO_ACCESS) {
     name
   }
 }
+
+query GetOrderById($id: UUID!) @auth(level: PUBLIC) {
+  order(key: { id: $id }) {
+    id
+    total
+    status
+    createdAt
+  }
+  orderItems(where: { orderId: { eq: $id } }) {
+    id
+    productName
+    quantity
+  }
+}
+
+query GetOrdersWithItems @auth(level: PUBLIC) {
+  orders(orderBy: [{ createdAt: DESC }]) {
+    id
+    total
+    status
+    createdAt
+  }
+  orderItems {
+    orderId
+    productName
+    quantity
+  }
+}
+
+query GetReviewsByProduct($productId: UUID!) @auth(level: PUBLIC) {
+  reviews(where: { productId: { eq: $productId } }) {
+    id
+    rating
+    comment
+    createdAt
+    user {
+      name
+    }
+  }
+}
+
+query GetFavorites($userId: UUID!) @auth(level: PUBLIC) {
+  favorites(where: { userId: { eq: $userId } }) {
+    id
+    product {
+      id
+      name
+      description
+      price
+      imageUrl
+      isAvailable
+    }
+  }
+}
