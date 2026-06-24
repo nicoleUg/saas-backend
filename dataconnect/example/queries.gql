@@ -1,0 +1,95 @@
+
+query GetCategories @auth(level: PUBLIC) {
+  categories(orderBy: [{ orderIndex: ASC }]) {
+    id
+    name
+    imageUrl
+    orderIndex
+  }
+}
+
+query GetProductsByCategory($categoryId: UUID!) @auth(level: PUBLIC) {
+  products(where: { categoryId: { eq: $categoryId } }) {
+    id
+    name
+    description
+    price
+    imageUrl
+    isAvailable
+  }
+}
+
+query GetOrders @auth(level: PUBLIC) {
+  orders(orderBy: [{ createdAt: DESC }]) {
+    id
+    total
+    status
+    tableNumber
+    createdAt
+  }
+}
+query GetUserByEmail($email: String!) @auth(level: NO_ACCESS) {
+  users(where: { email: { eq: $email } }) {
+    id
+    email
+    passwordHash
+    name
+    role
+  }
+}
+
+query GetOrderById($id: UUID!) @auth(level: PUBLIC) {
+  order(key: { id: $id }) {
+    id
+    total
+    status
+    tableNumber
+    createdAt
+  }
+  orderItems(where: { orderId: { eq: $id } }) {
+    id
+    productName
+    quantity
+  }
+}
+
+query GetOrdersWithItems @auth(level: PUBLIC) {
+  orders(orderBy: [{ createdAt: DESC }]) {
+    id
+    total
+    status
+    tableNumber
+    createdAt
+  }
+  orderItems {
+    orderId
+    productName
+    quantity
+  }
+}
+
+query GetReviewsByProduct($productId: UUID!) @auth(level: PUBLIC) {
+  reviews(where: { productId: { eq: $productId } }) {
+    id
+    rating
+    comment
+    createdAt
+    user {
+      name
+    }
+  }
+}
+
+query GetFavorites($userId: UUID!) @auth(level: PUBLIC) {
+  favorites(where: { userId: { eq: $userId } }) {
+    id
+    product {
+      id
+      name
+      description
+      price
+      imageUrl
+      isAvailable
+    }
+  }
+}

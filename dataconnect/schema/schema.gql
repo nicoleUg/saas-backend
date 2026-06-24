@@ -1,0 +1,64 @@
+# dataconnect/schema/schema.gql
+
+type Category @table {
+  id: UUID! @default(expr: "uuidV4()")
+  name: String!
+  imageUrl: String
+  orderIndex: Int!
+}
+
+type Product @table {
+  id: UUID! @default(expr: "uuidV4()")
+  name: String!
+  description: String!
+  price: Float!
+  imageUrl: String
+  isAvailable: Boolean! @default(value: true)
+  
+  category: Category! 
+}
+type RestaurantTable @table {
+  id: UUID! @default(expr: "uuidV4()")
+  number: Int! @unique
+  status: String! @default(value: "free") # free (libre), occupied (ocupada)
+}
+
+type Order @table {
+  id: UUID! 
+  total: Float!
+  status: String! @default(value: "received")
+  tableNumber: Int!
+  createdAt: Timestamp! @default(expr: "request.time")
+}
+
+type OrderItem @table {
+  id: UUID! @default(expr: "uuidV4()")
+  productName: String!
+  quantity: Int!
+  order: Order!
+}
+
+type User @table {
+  id: UUID! @default(expr: "uuidV4()")
+  email: String! @unique
+  passwordHash: String! 
+  name: String!
+  role: String! @default(value: "client")
+  createdAt: Timestamp! @default(expr: "request.time")
+}
+
+type Review @table {
+  id: UUID! @default(expr: "uuidV4()")
+  rating: Int!
+  comment: String!
+  product: Product!
+  user: User!
+  createdAt: Timestamp! @default(expr: "request.time")
+}
+
+type Favorite @table {
+  id: UUID! @default(expr: "uuidV4()")
+  product: Product!
+  user: User!
+  createdAt: Timestamp! @default(expr: "request.time")
+}
