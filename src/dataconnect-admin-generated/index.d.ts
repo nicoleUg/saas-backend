@@ -51,6 +51,7 @@ export interface CreateOrderVariables {
   total: number;
   status: string;
   tableNumber: number;
+  userId: UUIDString;
 }
 
 export interface CreateProductData {
@@ -161,6 +162,25 @@ export interface GetOrderByIdData {
 
 export interface GetOrderByIdVariables {
   id: UUIDString;
+}
+
+export interface GetOrdersByUserWithItemsData {
+  orders: ({
+    id: UUIDString;
+    total: number;
+    status: string;
+    tableNumber: number;
+    createdAt: TimestampString;
+  } & Order_Key)[];
+  orderItems: ({
+    orderId: UUIDString;
+    productName: string;
+    quantity: number;
+  })[];
+}
+
+export interface GetOrdersByUserWithItemsVariables {
+  userId: UUIDString;
 }
 
 export interface GetOrdersData {
@@ -391,6 +411,11 @@ export function getOrderById(vars: GetOrderByIdVariables, options?: OperationOpt
 export function getOrdersWithItems(dc: DataConnect, options?: OperationOptions): Promise<ExecuteOperationResponse<GetOrdersWithItemsData>>;
 /** Generated Node Admin SDK operation action function for the 'GetOrdersWithItems' Query. Allow users to pass in custom DataConnect instances. */
 export function getOrdersWithItems(options?: OperationOptions): Promise<ExecuteOperationResponse<GetOrdersWithItemsData>>;
+
+/** Generated Node Admin SDK operation action function for the 'GetOrdersByUserWithItems' Query. Allow users to execute without passing in DataConnect. */
+export function getOrdersByUserWithItems(dc: DataConnect, vars: GetOrdersByUserWithItemsVariables, options?: OperationOptions): Promise<ExecuteOperationResponse<GetOrdersByUserWithItemsData>>;
+/** Generated Node Admin SDK operation action function for the 'GetOrdersByUserWithItems' Query. Allow users to pass in custom DataConnect instances. */
+export function getOrdersByUserWithItems(vars: GetOrdersByUserWithItemsVariables, options?: OperationOptions): Promise<ExecuteOperationResponse<GetOrdersByUserWithItemsData>>;
 
 /** Generated Node Admin SDK operation action function for the 'GetReviewsByProduct' Query. Allow users to execute without passing in DataConnect. */
 export function getReviewsByProduct(dc: DataConnect, vars: GetReviewsByProductVariables, options?: OperationOptions): Promise<ExecuteOperationResponse<GetReviewsByProductData>>;

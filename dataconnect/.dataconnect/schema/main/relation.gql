@@ -255,6 +255,15 @@ extend type Order {
     distinct: Boolean = false
   ): Int! @fdc_generated(from: "Order.total", purpose: QUERY_COUNT)
   """
+  ✨ Count the number of rows in the `Order` table where the `userId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  userId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Order.userId", purpose: QUERY_COUNT)
+  """
   ✨ Sum the `tableNumber` field in the `Order` table.
   """
   tableNumber_sum(
@@ -770,6 +779,40 @@ extend type User {
     """
     having: Favorite_Having
   ): [Favorite!]! @fdc_generated(from: "Favorite.user", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `Order` objects in a one-to-many relationship (where `Order`.`user` is this object).
+  """
+  orders_on_user(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Order_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Order_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Order_Having
+  ): [Order!]! @fdc_generated(from: "Order.user", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
   """
   ✨ List `Review` objects in a one-to-many relationship (where `Review`.`user` is this object).
   """

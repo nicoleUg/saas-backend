@@ -29,6 +29,7 @@ type Order @table {
   status: String! @default(value: "received")
   tableNumber: Int!
   createdAt: Timestamp! @default(expr: "request.time")
+  user: User!
 }
 
 type OrderItem @table {
