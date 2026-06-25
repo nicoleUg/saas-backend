@@ -10,15 +10,21 @@ export class OrdersController {
 
   @Post()
   async createOrder(@Body() createOrderDto: CreateOrderDto, @Request() req) {
-    console.log(`Orden recibida del usuario: ${req.user.name}`);
+    const userId = req.user.id; 
+    console.log(`Creando orden para el usuario: ${req.user.name} (${userId})`);
     
-    await this.ordersService.createOrder(createOrderDto);
-    return { message: 'Orden procesada con éxito en el backend' };
+    const newOrder = await this.ordersService.createOrder(userId, createOrderDto);
+    
+    return { 
+      message: 'Orden procesada con éxito en el backend',
+      order: newOrder
+    };
   }
 
   @Get()
-  async getOrders() {
-    return this.ordersService.getOrders();
+  async getOrders(@Request() req) {
+    const userId = req.user.id;
+    return this.ordersService.getOrdersByUser(userId);
   }
 
   @Patch(':id/status')

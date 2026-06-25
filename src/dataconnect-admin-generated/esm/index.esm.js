@@ -120,6 +120,12 @@ export function getOrdersWithItems(dcOrOptions, options) {
   return dcInstance.executeQuery('GetOrdersWithItems', undefined, inputOpts);
 }
 
+export function getOrdersByUserWithItems(dcOrVarsOrOptions, varsOrOptions, options) {
+  const { dc: dcInstance, vars: inputVars, options: inputOpts} = validateAdminArgs(connectorConfig, dcOrVarsOrOptions, varsOrOptions, options, true, true);
+  dcInstance.useGen(true);
+  return dcInstance.executeQuery('GetOrdersByUserWithItems', inputVars, inputOpts);
+}
+
 export function getReviewsByProduct(dcOrVarsOrOptions, varsOrOptions, options) {
   const { dc: dcInstance, vars: inputVars, options: inputOpts} = validateAdminArgs(connectorConfig, dcOrVarsOrOptions, varsOrOptions, options, true, true);
   dcInstance.useGen(true);

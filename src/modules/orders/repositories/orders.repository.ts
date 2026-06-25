@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { createOrder, createOrderItem, getOrders, updateOrderStatus, getOrderById, getOrdersWithItems } from '@dataconnect/admin-generated';
+import { createOrder, createOrderItem, getOrders, updateOrderStatus, getOrderById, getOrdersWithItems, getOrdersByUserWithItems } from '@dataconnect/admin-generated';
 import { CreateOrderDto } from '../dto/create-order.dto';
 
 @Injectable()
 export class OrdersRepository {
   
-  async saveFullOrder(dto: CreateOrderDto) {
+  async saveFullOrder(userId: string, dto: CreateOrderDto) {
     try {
       console.log('[OrdersRepository] Intento de guardado de orden:', JSON.stringify(dto, null, 2));
       
@@ -14,6 +14,7 @@ export class OrdersRepository {
         total: dto.total,
         status: dto.status || 'pending',
         tableNumber: dto.tableNumber || 0,
+        userId: userId,
       });
       console.log('[OrdersRepository] Pedido principal insertado con éxito:', orderRes);
 
@@ -47,6 +48,27 @@ export class OrdersRepository {
 
   async getAllOrders() {
     const response = await getOrdersWithItems();
+    const { orders, orderItems } = response.data;
+    return orders.map(order => {
+      const items = orderItems
+        .filter(item => item.orderId === order.id)
+        .map(item => ({
+          name: item.productName,
+          qty: item.quantity,
+        }));
+      return {
+        id: order.id,
+        total: order.total,
+        status: order.status,
+        tableNumber: order.tableNumber,
+        createdAt: order.createdAt,
+        items,
+      };
+    });
+  }
+
+  async getOrdersByUser(userId: string) {
+    const response = await getOrdersByUserWithItems({ userId });
     const { orders, orderItems } = response.data;
     return orders.map(order => {
       const items = orderItems

@@ -6,12 +6,16 @@ import { CreateOrderDto } from '../dto/create-order.dto';
 export class OrdersService {
   constructor(private readonly ordersRepository: OrdersRepository) {}
 
-  async createOrder(dto: CreateOrderDto) {
-    return this.ordersRepository.saveFullOrder(dto);
+  async createOrder(userId: string, dto: CreateOrderDto) {
+    return this.ordersRepository.saveFullOrder(userId, dto);
   }
 
   async getOrders() {
     return this.ordersRepository.getAllOrders();
+  }
+
+  async getOrdersByUser(userId: string) {
+    return this.ordersRepository.getOrdersByUser(userId);
   }
 
   async updateStatus(id: string, status: string) {

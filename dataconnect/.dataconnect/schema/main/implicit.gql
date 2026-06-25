@@ -8,6 +8,12 @@ extend type Favorite {
   """
   userId: UUID! @fdc_generated(from: "Favorite.user", purpose: IMPLICIT_REF_FIELD)
 }
+extend type Order {
+  """
+  ✨ Implicit foreign key field based on `Order`.`user`. It must match the value of `User`.`id`. See `@ref` for how to customize it.
+  """
+  userId: UUID! @fdc_generated(from: "Order.user", purpose: IMPLICIT_REF_FIELD)
+}
 extend type OrderItem {
   """
   ✨ Implicit foreign key field based on `OrderItem`.`order`. It must match the value of `Order`.`id`. See `@ref` for how to customize it.

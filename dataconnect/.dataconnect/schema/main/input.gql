@@ -533,6 +533,18 @@ input Order_Data {
   """
   id_expr: UUID_Expr @fdc_forbiddenInVariables
   """
+  ✨ Generated from Field `Order`.`userId` of type `UUID!`
+  """
+  userId: UUID
+  """
+  ✨ `_expr` server value variant of `userId` (✨ Generated from Field `Order`.`userId` of type `UUID!`)
+  """
+  userId_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Order`.`user` of type `User!`
+  """
+  user: User_Key @fdc_forbiddenInVariables
+  """
   ✨ Generated from Field `Order`.`createdAt` of type `Timestamp!`
   """
   createdAt: Timestamp
@@ -605,6 +617,14 @@ input Order_Filter {
   ✨ Generated from Field `Order`.`id` of type `UUID!`
   """
   id: UUID_Filter
+  """
+  ✨ Generated from Field `Order`.`userId` of type `UUID!`
+  """
+  userId: UUID_Filter
+  """
+  ✨ Generated from Field `Order`.`user` of type `User!`
+  """
+  user: User_Filter
   """
   ✨ Generated from Field `Order`.`createdAt` of type `Timestamp!`
   """
@@ -684,6 +704,10 @@ input Order_Having {
   """
   total_count: Int_Filter
   """
+  ✨ Generated from Field `Order`.`userId_count` of type `Int!`
+  """
+  userId_count: Int_Filter
+  """
   ✨ Generated from Field `Order`.`tableNumber_sum` of type `Int`
   """
   tableNumber_sum: Int_Filter
@@ -759,6 +783,14 @@ input Order_Order {
   """
   id: OrderDirection
   """
+  ✨ Generated from Field `Order`.`userId` of type `UUID!`
+  """
+  userId: OrderDirection
+  """
+  ✨ Generated from Field `Order`.`user` of type `User!`
+  """
+  user: User_Order
+  """
   ✨ Generated from Field `Order`.`createdAt` of type `Timestamp!`
   """
   createdAt: OrderDirection
@@ -798,6 +830,10 @@ input Order_Order {
   ✨ Generated from Field `Order`.`total_count` of type `Int!`
   """
   total_count: OrderDirection
+  """
+  ✨ Generated from Field `Order`.`userId_count` of type `Int!`
+  """
+  userId_count: OrderDirection
   """
   ✨ Generated from Field `Order`.`tableNumber_sum` of type `Int`
   """
@@ -1996,6 +2032,10 @@ input User_Data {
   """
   favorites_on_user: [Favorite_Data!]
   """
+  ✨ Generated from Field `User`.`orders_on_user` of type `[Order!]!`
+  """
+  orders_on_user: [Order_Data!]
+  """
   ✨ Generated from Field `User`.`reviews_on_user` of type `[Review!]!`
   """
   reviews_on_user: [Review_Data!]
@@ -2044,6 +2084,10 @@ input User_Filter {
   ✨ Generated from Field `User`.`favorites_on_user` of type `[Favorite!]!`
   """
   favorites_on_user: Favorite_ListFilter
+  """
+  ✨ Generated from Field `User`.`orders_on_user` of type `[Order!]!`
+  """
+  orders_on_user: Order_ListFilter
   """
   ✨ Generated from Field `User`.`reviews_on_user` of type `[Review!]!`
   """
